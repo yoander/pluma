@@ -1,0 +1,3 @@
+[submodule "vendor/tree"]
+	path = vendor/tree
+	url = git://github.com/yoander/tree.git
