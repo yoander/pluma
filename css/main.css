@@ -1,0 +1,52 @@
+.tree ul, .tree li, .tree ul li {
+    list-style: none;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.tree, .tree ul {
+    margin: 5px 5px;
+    padding: 0;
+}
+
+.tree ul, .tree li li {
+    margin-left: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.CodeMirror {
+    /* Bootstrap Settings */
+    box-sizing: border-box;
+    margin: 15px 0 20px;
+    font: inherit;
+    overflow: auto;
+    font-family: inherit;
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    /* Code Mirror Settings */
+    font-family: monospace;
+    position: relative;
+    overflow: hidden;
+}
+
+.CodeMirror-focused {
+    /* Bootstrap Settings */
+    border-color: #66afe9;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
