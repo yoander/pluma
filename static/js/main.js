@@ -30,13 +30,17 @@ $(document).ready(function() {
 
                             $('#content').html(data.html);
 
-                            $('#content').show();
+                            $('#content').removeClass('hidden')
+                                .addClass('show');
+                            $('#toolbar').removeClass('show')
+                                .addClass('hidden');
                         }
 
                         if (data.raw != undefined) {
                             $('#editor').text(data.raw);
                         }
 
+                        $('#action a:first').tab('show') // Select first tab
 
                     });
                 }
@@ -55,7 +59,7 @@ $(document).ready(function() {
     $('#edit-src').click(function () {
         var cm = $('body').data('cm_instance');
         if (cm == undefined) {
-             var codeMirrorUrl = window.location.href + 'js/vendor/codemirror-4.8';
+             var codeMirrorUrl = window.location.href.replace(/#$/, '') + 'static/vendor/codemirror';
 
             // Load css for CodeMirror
             $("<link>")
@@ -74,7 +78,7 @@ $(document).ready(function() {
                         lineWrapping: true
                     });
 
-                    cm.setSize('100%', '90%');
+                    cm.setSize('100%', '480px');
                     $('body').data('cm_instance', cm);
                 });
             });
@@ -83,7 +87,10 @@ $(document).ready(function() {
             cm.setValue(cm.getTextArea().value);
         }
 
-        $('#content').hide();
+        $('#content').removeClass('show')
+            .addClass('hide');
+        $('#toolbar').removeClass('hidden')
+            .addClass('show');
 
         return false;
         /*$(this).addClass('active');
@@ -106,5 +113,24 @@ $(document).ready(function() {
         }
 
         return false;
+    });
+
+
+    $('#action a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+    $('#cancel-src-edit').click(function () {
+        var cm = $('body').data('cm_instance');
+        if (cm !== undefined) {
+            cm.getWrapperElement().style.display = 'none';
+        }
+        $('#content').removeClass('hidden')
+            .addClass('show');
+        $('#toolbar').removeClass('show')
+            .addClass('hidden');
+
+        $('#action a:first').tab('show') // Select first tab
     });
 });
