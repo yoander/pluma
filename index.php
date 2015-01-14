@@ -60,10 +60,10 @@ if (!empty($slug)) {
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>Tree</title>
-            <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
-            <link href="css/main.css" rel="stylesheet">
+            <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="static/css/main.css" rel="stylesheet">
         </head>
-        <body style="padding-top: 70px" data-url="<?php echo BASE_URL ?>">
+        <body style="padding-top: 50px" data-url="<?php echo BASE_URL ?>">
             <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
@@ -72,14 +72,6 @@ if (!empty($slug)) {
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-
-                                <form class="navbar-form navbar-left" role="search" method="post" action="<?php echo '' ?>/send.php">
-                                    <div id="toolbar">
-                                        <button id="edit-src" data-ref="" role="button" class="btn btn-sm btn-danger "><span class="glyphicon glyphicon-pencil"></span> Edit</button>
-                                        <button id="save-src" data-ref="" role="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
-                                        <button id="view-html" data-ref="" role="button" class="btn btn-sm btn-primary active"><span class="glyphicon glyphicon-eye-open"></span> View</button>
-                                    </div>
-                                </form>
                             </li>
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -87,18 +79,35 @@ if (!empty($slug)) {
         </div>
             <div class="container">
                 <div class="row">
-                    <div id="tree-container" style="float: left; width: 20%"><?php echo $output->getTree() ?></div>
-                    <div id="content-container" style="float: left; width: 80%">
-                        <textarea id="editor" style="display: none"></textarea>
+                    <div id="tree-container" class="col-xs-3 col-md-3"><?php echo $output->getTree() ?></div>
+                    <div id="content-container" class="col-xs-9 col-md-9">
+                        <div id="action-bar" data-spy="affix" data-offset-top="50">
+                            <ol class="breadcrumb">
+                              <li><a href="#">Home</a></li>
+                              <li><a href="#">Library</a></li>
+                              <li class="active">Data</li>
+                            </ol>
+                            <ul id="action" class="nav nav-tabs">
+                                <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-eye-open"></span> View</a></li>
+                                <li id="edit-src" role="presentation"><a href="#"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
+                                <li role="presentation"><a href="#"><span class="glyphicon glyphicon-tasks"></span> History</a></a></li>
+                            </ul>
+                        </div>
+                        <textarea id="editor" class="hidden"></textarea>
+                        <div id="toolbar" class="hidden">
+                            <button id="save-src" data-ref="" role="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-floppy-saved"></span> Save</button>
+                            <button id="save-src-edit" data-ref="" role="button" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-floppy-save"></span> Save & Edit</button>
+                            <button id="cancel-src-edit" data-ref="" role="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-floppy-remove"></span> Cancel</button>
+                        </div>
                         <div id="content" ><?php echo $output->getContent() ?></div>
                     </div>
                 </div>
             </div>
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-            <script src="js/vendor/jquery.js"></script>
-            <script src="js/vendor/amplify.store.min.js"></script>
+            <script src="static/vendor/jquery/jquery.js"></script>
+            <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
             <!-- Include all compiled plugins (below), or include individual files as needed -->
-            <script src="js/main-nonrecursive.js"></script>
+            <script src="static/js/main.js"></script>
         </body>
     </html>
 <?php } ?>
