@@ -20,8 +20,8 @@ use Tree\Helper\Writer;
 
 if (!empty($_REQUEST['save']) && (bool) $_REQUEST['save']) {
     Writer::write($_REQUEST['slug'], $_REQUEST['content']);
-    echo 'Ok';
-    return;
+    //echo 'Ok';
+    //return;
 }
 
 $slug = empty($_REQUEST['slug']) ? str_replace([BASE_DIR, '/'], '', $_SERVER['REQUEST_URI']) : $_REQUEST['slug'];
@@ -71,8 +71,6 @@ if (!empty($slug)) {
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li>
-                            </li>
                         </ul>
                     </div><!--/.nav-collapse -->
             </div>
@@ -84,8 +82,7 @@ if (!empty($slug)) {
                         <div id="action-bar" data-spy="affix" data-offset-top="50">
                             <ol class="breadcrumb">
                               <li><a href="#">Home</a></li>
-                              <li><a href="#">Library</a></li>
-                              <li class="active">Data</li>
+                              <li><a href="#">Welcome.textile</a></li>
                             </ol>
                             <ul id="action" class="nav nav-tabs">
                                 <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-eye-open"></span> View</a></li>
