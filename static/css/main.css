@@ -61,8 +61,12 @@
     background-color: transparent;
     padding: 5px 0 7px;
     margin-bottom: 0;
+
 }
 
 .breadcrumb > li + li:before {
-    content: ">";
+    content: "»";
+    color: #337ab7;
+    font-weight: bold;
+    font-size: 1.3em;
 }

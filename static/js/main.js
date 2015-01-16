@@ -30,6 +30,12 @@ $(document).ready(function() {
         }
     }
 
+    $.updateBreadCrumb = function (arr) {
+        $("#migas").html($.map(arr, function (item) {
+            return "<li>" + $(item).find("> div").html().trim() + "</li>";
+        }).join(""));
+    }
+
     $.editContent = function () {
         var cm = $('body').data('cm_instance');
         if (cm == undefined) {
@@ -69,10 +75,6 @@ $(document).ready(function() {
 
     var nodeAction = function (elem) {
         var parent = elem.parents('li:first');
-        //var parent = parents.first();
-
-        //console.log(parents);
-        console.log(parent);
 
         parent.hasClass('leaf') &&
             $('#save-src').attr('data-ref', elem.attr('data-ref'));
@@ -94,7 +96,13 @@ $(document).ready(function() {
             );
         }
 
-        parent.toggleClass('open');
+        elem.toggleClass('open');
+        parent.addClass('open');
+
+        if (parent.hasClass("leaf")) {
+            //console.log(elem.parents(".open"));
+            $.updateBreadCrumb(elem.parents(".open").get().reverse());
+        }
 
         return false;
     };
