@@ -80,7 +80,7 @@ if (!empty($slug)) {
                     <div id="tree-container" class="col-xs-3 col-md-3"><?php echo $output->getTree() ?></div>
                     <div id="content-container" class="col-xs-9 col-md-9">
                         <div id="action-bar" data-spy="affix" data-offset-top="50">
-                            <ol class="breadcrumb">
+                            <ol id="migas" class="breadcrumb">
                               <li><a href="#">Home</a></li>
                               <li><a href="#">Welcome.textile</a></li>
                             </ol>
