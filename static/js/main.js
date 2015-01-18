@@ -33,7 +33,11 @@ $(document).ready(function() {
     $.updateBreadCrumb = function (arr) {
         $("#migas").html($.map(arr, function (item) {
             return "<li>" + $(item).find("> div").html().trim() + "</li>";
-        }).join(""));
+        }).join("")).prepend('<li>' +
+            '<a data-ref="welcome-textile" href="./#" class="open">' +
+                '<span class="glyphicon glyphicon-home"></span>' +
+                '<span class="node-label"> Home</span>' +
+            '</a></li>');
     }
 
     $.editContent = function () {

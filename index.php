@@ -81,8 +81,18 @@ if (!empty($slug)) {
                     <div id="content-container" class="col-xs-9 col-md-9">
                         <div id="action-bar" data-spy="affix" data-offset-top="50">
                             <ol id="migas" class="breadcrumb">
-                              <li><a href="#">Home</a></li>
-                              <li><a href="#">Welcome.textile</a></li>
+                                <li>
+                                    <a data-ref="welcome-textile" href="./#" class="open">
+                                        <span class="glyphicon glyphicon-home"></span>
+                                        <span class="node-label">Home</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-ref="welcome-textile" href="./#" class="open">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        <span class="node-label">Welcome.textile</span>
+                                    </a>
+                                </li>
                             </ol>
                             <ul id="action" class="nav nav-tabs">
                                 <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-eye-open"></span> View</a></li>
