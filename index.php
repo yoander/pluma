@@ -20,15 +20,14 @@ use Tree\Helper\Writer;
 
 if (!empty($_REQUEST['save']) && (bool) $_REQUEST['save']) {
     Writer::write($_REQUEST['slug'], $_REQUEST['content']);
-    //echo 'Ok';
-    //return;
 }
 
 $slug = empty($_REQUEST['slug']) ? str_replace([BASE_DIR, '/'], '', $_SERVER['REQUEST_URI']) : $_REQUEST['slug'];
-
 $output = Render::output(DB_DIR, $slug);
 
+
 if (!empty($slug)) {
+
     $html = null;
     $raw = null;
     if (Output::TYPE_CONTENT === $output->getType()) {
@@ -45,13 +44,19 @@ if (!empty($slug)) {
                 $html = "<pre>{$raw}</pre>";
                 break;
             default:
-                $raw = $output->getContent();
+                $raw = nl2br($output->getContent());
                 $html = $raw;
         }
     }
     echo json_encode(['tree' => $output->getTree(), 'html' => $html, 'raw' => $output->getContent()]);
     return;
 } else {
+    $render = Render::output(DB_DIR, 'welcome-textile');
+      // Register textile namespace
+                $loader->addNamespace('Netcarver\Textile', __DIR__ . '/vendor/netcarver/textile/src/Netcarver/Textile');
+                $parser = new \Netcarver\Textile\Parser();
+                $raw = $render->getContent();
+                $html = html_entity_decode($parser->textileThis($raw));
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -65,7 +70,7 @@ if (!empty($slug)) {
         </head>
         <body style="padding-top: 50px" data-url="<?php echo BASE_URL ?>">
             <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
+                <div>
                     <div class="navbar-header">
                         <a href="<?php echo '' ?>" class="navbar-brand"><span class="glyphicon glyphicon-leaf"></span> leaf: Personal and beautiful wiki</a>
                     </div>
@@ -75,10 +80,10 @@ if (!empty($slug)) {
                     </div><!--/.nav-collapse -->
             </div>
         </div>
-            <div class="container">
+            <div class="container_">
                 <div class="row">
-                    <div id="tree-container" class="col-xs-3 col-md-3"><?php echo $output->getTree() ?></div>
-                    <div id="content-container" class="col-xs-9 col-md-9">
+                    <div id="tree-container" class="col-xs-2 col-md-2"><?php echo $output->getTree() ?></div>
+                    <div id="content-container" class="col-xs-8 col-md-8">
                         <div id="action-bar" data-spy="affix" data-offset-top="50">
                             <ol id="migas" class="breadcrumb">
                                 <li>
@@ -106,8 +111,9 @@ if (!empty($slug)) {
                             <button id="save-src-edit" data-ref="" role="button" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-floppy-save"></span> Save & Edit</button>
                             <button id="cancel-src-edit" data-ref="" role="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-floppy-remove"></span> Cancel</button>
                         </div>
-                        <div id="content" ><?php echo $output->getContent() ?></div>
+                        <div id="content"><?php echo $html ?></div>
                     </div>
+                    <div id="tree-container" class="col-xs-2 col-md-2"><?php echo $output->getTree() ?></div>
                 </div>
             </div>
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
