@@ -80,9 +80,6 @@ $(document).ready(function() {
     var nodeAction = function (elem) {
         var parent = elem.parents('li:first');
 
-        parent.hasClass('leaf') &&
-            $('#save-src').attr('data-ref', elem.attr('data-ref'));
-
         if (parent.hasClass('open') && !parent.hasClass('leaf')) {
             parent.children('ul').remove('.tree');
         } else {
@@ -100,13 +97,12 @@ $(document).ready(function() {
             );
         }
 
-        elem.toggleClass('open');
-        parent.addClass('open');
-
-        if (parent.hasClass("leaf")) {
-            //console.log(elem.parents(".open"));
+        parent.toggleClass('open');
+        if (parent.hasClass("leaf") && !elem.hasClass("open")) {
             $.updateBreadCrumb(elem.parents(".open").get().reverse());
         }
+
+        elem.toggleClass('open');
 
         return false;
     };
