@@ -2,3 +2,4 @@
 vendor/
 fonts/
 .geany*
+*.komodoproject
